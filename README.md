@@ -65,5 +65,5 @@ Para validar a segurança da API e as regras de negócio, os testes foram realiz
 <details>
   <summary>🚚 Clique para ver os resultados dos testes</summary>
   <br>
-  <img src=".teste-passou.JPG" alt="Teste de Cálculo de Frete" width="100%">
+  <img src="teste-passou.JPG" alt="Testes" width="100%">
 </details>
