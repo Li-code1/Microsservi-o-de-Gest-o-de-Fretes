@@ -44,3 +44,21 @@ dotnet run --project FreightManagement.Api/FreightManagement.Api.csproj
 Para rodar a suíte de testes unitários do projeto, execute:
 
 dotnet test
+
+## 🧪 Demonstração dos Testes (Postman)
+
+Para validar a segurança da API e as regras de negócio, os testes foram realizados localmente. Clique nos títulos abaixo para visualizar as evidências:
+
+<details>
+  <summary>🔑 Clique para ver o teste de Autenticação (JWT)</summary>
+  <br>
+  <p>Envio das credenciais para o endpoint <code>/api/Auth/login</code> para receber o token de acesso seguro.</p>
+  <img src="./docs/login-teste.JPG" alt="Teste de Autenticação" width="100%">
+</details>
+
+<details>
+  <summary>🚚 Clique para ver o teste de Cálculo de Frete (Status 200 OK)</summary>
+  <br>
+  <p>Envio dos dados de distância, peso e rota para o endpoint <code>/api/Freight/calculate</code> com o token ativo.</p>
+  <img src="./docs/calculo-frete-teste.JPG" alt="Teste de Cálculo de Frete" width="100%">
+</details>
