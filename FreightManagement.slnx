@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FreightManagement.Api/FreightManagement.Api.csproj" />
+  <Project Path="FreightManagement.Tests/FreightManagement.Tests.csproj" />
+</Solution>
