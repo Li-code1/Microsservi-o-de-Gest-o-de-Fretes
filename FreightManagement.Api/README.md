@@ -28,20 +28,67 @@ Preço Base: R$ 2,50 por Km rodado.
 
 Taxa de Longa Distância: Acréscimo fixo de R$ 100,00 para rotas acima de 500 Km de distância total.
 
-🛠️ Como Executar o Projeto pelo GitHub Codespaces
-Na página deste repositório, clique em Code -> Codespaces -> Create codespace on main.
+## 🚀 Como Testar a API Localmente (Postman)
 
-No terminal do seu Codespaces, execute o comando para iniciar a API:
+Siga os passos abaixo para validar os fluxos de autenticação e cálculo de frete diretamente no seu Postman local.
 
+### 1. Inicializar a API
+No terminal da raiz do projeto, execute os comandos abaixo para garantir uma inicialização limpa:
+```bash
+dotnet clean
 dotnet run --project FreightManagement.Api/FreightManagement.Api.csproj
 
-3- Clique na notificação que surgir no navegador para abrir o link da aplicação.
+```
 
-4- Adicione /swagger/index.html ao fim da URL gerada para interagir com a interface.
+A API estará escutando no endereço local: `http://localhost:5090`.
 
-Para rodar a suíte de testes unitários do projeto, execute:
+---
 
-dotnet test
+### 2. Fluxo de Autenticação (Gerar Token JWT)
+
+Como os endpoints de negócio são protegidos, o primeiro passo é realizar o login para obter um token de acesso válido.
+
+* **Método:** `POST`
+* **URL:** `http://localhost:5090/api/Auth/login`
+* **Headers:** `Content-Type: application/json`
+* **Body (raw - JSON):**
+
+```json
+{
+  "username": "admin",
+  "password": "sua_senha_aqui"
+}
+
+```
+
+> 📥 **Ação:** Copie o código do token retornado no campo `"token"` da resposta.
+
+---
+
+### 3. Fluxo de Cálculo de Frete (Endpoint Protegido)
+
+Com o token em mãos, você já pode realizar requisições para processar as taxas de entrega.
+
+* **Método:** `POST`
+* **URL:** `http://localhost:5090/api/Freight/calculate`
+* **Headers:**
+* `Content-Type: application/json`
+
+
+* **Authorization:**
+* Selecione a aba **Auth** no Postman, escolha o tipo **Bearer Token** e cole o token copiado no passo anterior.
+
+
+* **Body (raw - JSON):**
+
+```json
+{
+  "distanceInKm": 150.5,
+  "weightInKg": 22.4,
+  "route": "São Paulo - Praia Grande"
+}
+
+```
 
 ## 🧪 Demonstração dos Testes (Postman)
 
@@ -59,9 +106,4 @@ Para validar a segurança da API e as regras de negócio, os testes foram realiz
   <br>
   <p>Envio dos dados de distância, peso e rota para o endpoint <code>/api/Freight/calculate</code> com o token ativo.</p>
   <img src="../docs/calculo-frete-teste.JPG" alt="Teste de Cálculo de Frete" width="100%">
-</details>
-<details>
-  <summary>🚚 Clique para ver os resultados dos testes</summary>
-  <br>
-  <img src="teste-passou.JPG" alt="Testes" width="100%">
 </details>
